@@ -1,0 +1,63 @@
+﻿@using EmployeePortal.Models
+@model Employee
+@{
+    ViewData["Title"] = "Delete Employee";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="col-lg-8 col-md-10">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 border rounded">
+                <div class="alert alert-warning text-center mb-4">
+                    <h2 class="text-danger mb-1">⚠️ Вы уверены?</h2>
+                    <p class="text-dark">Вы собираетесь навсегда удалить запись этого сотрудника. Это действие необратимо и удалит все данные, связанные с <strong>@Model.FullName</strong>, из системы. Пожалуйста, подтвердите свое решение.</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th class="text-muted text-start">👤 Полное имя:</th>
+                                <td class="fw-bold text-dark text-start ps-2">@Model.FullName</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted text-start">📧 Почта:</th>
+                                <td class="fw-bold text-dark text-start ps-2">@Model.Email</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted text-start">💼 Должность:</th>
+                                <td class="fw-bold text-dark text-start ps-2">@Model.Position</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted text-start">🏢 Отделение:</th>
+                                <td class="fw-bold text-dark text-start ps-2">@Model.Department</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted text-start">🗓️ Дата найма:</th>
+                                <td class="fw-bold text-dark text-start ps-2">@Model.HireDate?.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted text-start">🎂 Дата рождения:</th>
+                                <td class="fw-bold text-dark text-start ps-2">@Model.DateOfBirth?.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted text-start">👔 Тип найма:</th>
+                                <td class="fw-bold text-dark text-start ps-2">@Model.Type</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted text-start">💰 Заработная плата:</th>
+                                <td class="fw-bold text-dark text-start ps-2">@Model.Salary</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-4">
+                    <form asp-action="Delete" asp-controller="Employee" method="post">
+                        <input type="hidden" asp-for="Id"/>
+                        <button type="submit" class="btn btn-danger btn-lg me-3"><i class="bi bi-trash-fill"></i> Да, удалить</button>
+                        <a class="btn btn-outline-success btn-lg" asp-controller="Employee" asp-action="List"><i class="bi bi-arrow-left-circle-fill"></i> Назад</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
